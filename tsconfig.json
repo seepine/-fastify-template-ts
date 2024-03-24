@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es5",
+      "es6"
+    ],
+    "target": "ES2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "commonjs", /* Specify what module code is generated. */
+    "moduleResolution": "node",
+    "outDir": "dist", /* Specify an output folder for all emitted files. */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": false
+  },
+  "include": [
+    "app.ts",
+    "app.config.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ]
+}

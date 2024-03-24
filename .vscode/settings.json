@@ -1,0 +1,45 @@
+{
+  // 保存时格式化
+  "editor.formatOnSave": true,
+  // 从不展示扩展缩写
+  "emmet.showExpandedAbbreviation": "never",
+  // 关闭代码区域小地图
+  "editor.minimap.enabled": false,
+  // 代码过长换行
+  "editor.wordWrap": "on",
+  "editor.indentSize": 2,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  // 开启文件折叠
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    // 把大部分配置文件都折叠到package.json里
+    "package.json": ".*, index.html, yarn.lock,*.ts, *.js, *.json, *.sh, pnpm-lock.yaml"
+  },
+  // 隐藏某些文件或目录
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    ".husky": true
+  },
+  // 自定义彩虹插件颜色
+  "indentRainbow.colors": [
+    "rgba(245, 63, 63, 0.07)",
+    "rgba(255, 125, 0, 0.07)",
+    "rgba(247, 186, 30, 0.07)",
+    "rgba(250, 220, 25, 0.07)",
+    "rgba(159, 219, 29, 0.07)",
+    "rgba(0, 180, 42, 0.07)",
+    "rgba(20, 201, 201, 0.07)",
+    "rgba(52, 145, 250, 0.07)",
+    "rgba(22, 93, 255, 0.07)",
+    "rgba(114, 46, 209, 0.07)",
+    "rgba(217, 26, 217, 0.07)",
+    "rgba(245, 49, 157, 0.07)"
+  ]
+}

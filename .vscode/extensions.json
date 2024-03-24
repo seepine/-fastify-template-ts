@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    // editor
+    "EditorConfig.EditorConfig",
+    // package 包跳转
+    "ravenq.vscode-goto-node-modules",
+    // 彩虹插件
+    "oderwat.indent-rainbow"
+  ]
+}
