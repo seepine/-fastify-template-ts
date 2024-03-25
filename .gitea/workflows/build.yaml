@@ -7,7 +7,7 @@ on:
     tags:
       - v*
 env:
-  DOCKER_REGISTRY: registry.cn-hangzhou.aliyuncs.com
+  DOCKER_REGISTRY: git.seepine.com
   DOCKER_USERNAME: seepine
 jobs:
   build-image:
@@ -33,7 +33,7 @@ jobs:
         with:
           registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ env.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.GIT_DOCKER_PASSWORD }}
 
       - name: Get Meta
         id: meta
