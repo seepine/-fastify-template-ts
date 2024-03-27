@@ -118,8 +118,6 @@ export default ({ request, fastify }: HookCtx) => {
 
 更多钩子请查看 [官方文档Hooks](https://www.fastify.cn/docs/latest/Hooks/#prehandler)
 
-> 项目对返回值做了统一包装处理，默认返回 `{code,msg,data}` 结构，若想去除自行删除hooks中 `on-send` 、 `pre-serialization` 和 `on-error` 即可
-
 ## 四、部署
 
 已提供 `Dockerfile`，直接 `docker build -t demo-app -f docker/Dockerfile .` 或通过 `cicd` 构建镜像即可，当然也可以直接源码部署运行
