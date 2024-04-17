@@ -22,6 +22,33 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Get hash file
+        uses: seepine/hash-files@v1
+        id: get-hash
+        with:
+          patterns: |
+            **/package.json
+            **/package-lock.json
+            **/pnpm-lock.yaml
+            **/yarn.lock
+
+      - name: Cache Dependent
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ steps.get-hash.outputs.hash }}
+
+      - name: Npm Install
+        if: steps.cache.outputs.cache-hit != 'true' # 有缓存则跳过
+        run: |
+          npm install
+
+      - name: Npm Build and Minify
+        run: |
+          npm run build
+          node docker/minify.js
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -45,7 +72,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/Dockerfile
+          file: ./docker/Dockerfile.act
           platforms: |
             linux/amd64
             linux/arm64
