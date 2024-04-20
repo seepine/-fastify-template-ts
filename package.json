@@ -7,7 +7,8 @@
     "dev": "nodemon --watch src --watch app.ts --watch app.config.ts --ext ts,json,js --delay 0.8 --exec ts-node -T app.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node app.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "obfuscate": "javascript-obfuscator --exclude node_modules dist --output dist-obfuscated"
   },
   "author": "seepine",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "@types/node": "~20.11.28",
     "@vercel/nft": "~0.24.4",
     "fs-extra": "~11.2.0",
+    "javascript-obfuscator": "~4.1.0",
     "nodemon": "~3.1.0",
     "ts-node": "~10.9.2",
     "typescript": "~5.4.2"

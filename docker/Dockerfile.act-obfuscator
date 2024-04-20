@@ -1,0 +1,7 @@
+FROM seepine/alpine:node
+WORKDIR /workspace
+ENV MODE=prod
+COPY ./dist/node_modules /workspace/node_modules
+COPY ./dist-obfuscated /workspace/
+
+ENTRYPOINT crond && node app.js
