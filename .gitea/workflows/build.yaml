@@ -12,10 +12,6 @@ env:
 jobs:
   build-image:
     runs-on: ubuntu-latest
-    container:
-      image: seepine/ubuntu:act
-      volumes:
-        - ubuntu_dockercache:/opt/dockercache
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -68,6 +64,12 @@ jobs:
           echo REPO_NAME=$(echo ${GITHUB_REPOSITORY} | awk -F"/" '{print $2}') >> $GITHUB_OUTPUT
           echo REPO_VERSION=$(echo ${{ github.ref }} | awk -F"/" '{print $3}' | awk -F"v" '{print $2}') >> $GITHUB_OUTPUT
 
+      - name: Cache docker build
+        uses: actions/cache@v3
+        with:
+          path: /opt/docker-cache/.build-cache
+          key: ${{ runner.os }}-docker-build-cache
+
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
@@ -80,10 +82,5 @@ jobs:
           tags: |
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ steps.meta.outputs.REPO_NAME }}:latest
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ steps.meta.outputs.REPO_NAME }}:${{ steps.meta.outputs.REPO_VERSION }}
-          cache-from: type=local,src=/opt/dockercache/.buildx-${{ steps.meta.outputs.REPO_NAME }}-cache
-          cache-to: type=local,dest=/opt/dockercache/.buildx-${{ steps.meta.outputs.REPO_NAME }}-cache-new,mode=max
-
-      - name: Rebuild docker cache
-        run: |
-          rm -rf /opt/dockercache/.buildx-${{ steps.meta.outputs.REPO_NAME }}-cache
-          mv /opt/dockercache/.buildx-${{ steps.meta.outputs.REPO_NAME }}-cache-new /opt/dockercache/.buildx-${{ steps.meta.outputs.REPO_NAME }}-cache
+          cache-from: type=local,src=/opt/docker-cache/.build-cache
+          cache-to: type=local,dest=/opt/docker-cache/.build-cache,mode=max
