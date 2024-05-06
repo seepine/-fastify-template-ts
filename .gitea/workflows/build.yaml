@@ -68,7 +68,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /opt/docker-cache/.build-cache
-          key: ${{ runner.os }}-docker-build-cache
+          key: ${{ runner.os }}-${{ steps.meta.outputs.REPO_NAME }}-docker-build-cache
 
       - name: Build and push
         uses: docker/build-push-action@v4
